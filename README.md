@@ -1,6 +1,7 @@
 # SearchJobs
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.6.
+Il s'agit d'un projet pour mon bts. Cette application web est une application de recherche d'emploi
 
 ## Development server
 

@@ -1,4 +1,9 @@
-{
+{ 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vincent-Alibert/search-jobs.git"
+  },
+  "author": "vincent Alibert",
   "name": "search-jobs",
   "version": "0.0.0",
   "license": "MIT",
