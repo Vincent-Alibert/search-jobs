@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Offre } from './classe/offre';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class OffresService {
 
-  constructor() { }
+  private ROUTE = 'http://localhost:4201/api/v1';
+
+  constructor(private _http: Http) { }
+
+  getAllOffres() {
+    return this._http.get(this.ROUTE + '/offres')
+    .do(x => console.log(x))
+      .map(res => res.json());
+  }
 
 }
