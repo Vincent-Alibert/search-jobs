@@ -18,7 +18,7 @@ export class ListOffresComponent implements OnInit {
 
   ngOnInit() {
     this.offresService.getAllOffres().subscribe(
-      data => { console.log(data);
+      data => {
         if (data.status === 'success') {
           this.offres = data.offre;
         } else {

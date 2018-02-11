@@ -12,7 +12,6 @@ export class OffresService {
 
   getAllOffres() {
     return this._http.get(this.ROUTE + '/offres')
-    .do(x => console.log(x))
       .map(res => res.json());
   }
 
