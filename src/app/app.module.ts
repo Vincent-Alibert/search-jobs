@@ -8,18 +8,21 @@ import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './offres/details/details.component';
 import { ListOffresComponent } from './offres/list-offres/list-offres.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'offres/:id', component: DetailsComponent },
-  { path: 'offres', component: ListOffresComponent }
+  { path: 'offres', component: ListOffresComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
