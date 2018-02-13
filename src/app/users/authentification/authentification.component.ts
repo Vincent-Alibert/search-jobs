@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -11,25 +13,40 @@ export class AuthentificationComponent implements OnInit {
   invalidEmail = false;
   invalidCombinaison = false;
 
+  error = false;
+  errorMsg: string;
+
   cardTitle = 'Connection';
   cardButton = 'Connection';
   textLink = `Vous n'avez pas de compte ?`;
 
-  constructor() { }
+  constructor(private _usersService: UsersService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  login(data) {
-    console.log(data);
+  login(dataForm) {
 
-    if (!this.validateEmail(data.emailUser)) {
+    if (!this.validateEmail(dataForm.emailUser.trim())) {
       this.invalidEmail = true;
     }
+    if (this.validateEmail(dataForm.emailUser.trim())) {
+      this._usersService.login(dataForm).subscribe(
+        dataServ => {
+          console.log('dataServ ', dataServ);
+          console.log('dataServ.result.status ', dataServ.result.status);
 
-    if (this.validateEmail(data.emailUser) && data.passwordUser.length >= 5) {
-      console.log(this.escapeHtml(data.emailUser));
-      console.log(this.escapeHtml(data.passwordUser));
+          if (dataServ.result.status === 'success') {
+            this.error = false;
+            this.router.navigate(['/compte']);
+          } else {
+            this.error = true;
+            this.invalidEmail = false;
+            this.errorMsg = dataServ.result.user;
+          }
+        },
+        error => console.log(`error = ${error}`)
+      );
     }
 
   }
@@ -47,7 +64,7 @@ export class AuthentificationComponent implements OnInit {
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
-      "'": '&#039;'
+      '\'': '&#039;'
     };
     return text.replace(/[&<>"']/g, function (m) { return map[m]; });
   }

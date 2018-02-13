@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { RouterModule } from '@angular/router';
 import { CompteComponent } from './compte/compte.component';
+import { UsersService } from './users.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { CompteComponent } from './compte/compte.component';
   ],
   exports: [
     AuthentificationComponent
-  ]
+  ],
+  providers: [UsersService]
 })
 export class UsersModule { }

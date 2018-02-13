@@ -7,6 +7,7 @@ import { ListOffresComponent } from './offres/list-offres/list-offres.component'
 import { AuthentificationComponent } from './users/authentification/authentification.component';
 import { InscriptionComponent } from './users/inscription/inscription.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CompteComponent } from './users/compte/compte.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'offres/:id', component: DetailsComponent },
   { path: 'offres', component: ListOffresComponent },
   { path: 'connection', component: AuthentificationComponent },
-  { path: 'inscription', component: InscriptionComponent }
+  { path: 'inscription', component: InscriptionComponent },
+  { path: 'compte', component: CompteComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
