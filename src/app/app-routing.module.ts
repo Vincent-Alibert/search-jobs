@@ -14,14 +14,14 @@ const routes: Routes = [
   { path: 'offres/:id', component: DetailsComponent },
   { path: 'offres', component: ListOffresComponent },
   { path: 'connection', component: AuthentificationComponent },
-  { path: 'inscription', component: InscriptionComponent },
+  { path: 'inscription', component: InscriptionComponent }
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   exports: [RouterModule],
-  imports: [ RouterModule.forRoot(routes) ]
+  imports: [RouterModule.forRoot(routes)]
 })
 
 export class AppRoutingModule { }

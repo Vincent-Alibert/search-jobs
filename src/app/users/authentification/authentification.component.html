@@ -1,3 +1,33 @@
-<p>
-  authentification works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{cardTitle}}</h1>
+          <form #form="ngForm" (submit)="login(form.value)" novalidate>
+            <div class="form-group row">
+              <label for="emailUser" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input #emailUser="ngModel" ngModel required type="email" class="form-control" id="emailUser" name="emailUser" placeholder="exemple@mail.com">
+                <div *ngIf="invalidEmail" class="invalid-feedback">
+                  Veuillez rentrer un email valide svp
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="passwordUser" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input ngModel type="password" required class="form-control" id="passwordUser" name="passwordUser" placeholder="Password">
+
+              </div>
+            </div>
+            <button type="submit"  class="btn btn-primary">{{cardButton}}</button>
+          </form>
+          <a class="card-link" routerLink='/inscription'>{{textLink}}</a>
+        </div>
+      </div>
+      <p>form: </p>
+      {{form.value | json }}
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { OffresService } from '../offres.service';
 
 
 @Component({
+  moduleId: module.id,
   selector: 'vawec-list-offres',
   templateUrl: './list-offres.component.html',
   styleUrls: ['./list-offres.component.scss']

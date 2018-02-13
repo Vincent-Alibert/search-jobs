@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'vawec-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
