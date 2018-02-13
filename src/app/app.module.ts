@@ -9,12 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './offres/details/details.component';
 import { ListOffresComponent } from './offres/list-offres/list-offres.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UsersModule } from './users/users.module';
+import { AuthentificationComponent } from './users/authentification/authentification.component';
 
 const routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'offres/:id', component: DetailsComponent },
   { path: 'offres', component: ListOffresComponent },
+  { path: 'connection', component: AuthentificationComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -29,6 +32,7 @@ const routes = [
     HttpClientModule,
     HttpModule,
     OffresModule,
+    UsersModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
