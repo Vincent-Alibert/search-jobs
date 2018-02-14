@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
+import { Md5 } from 'ts-md5/dist/md5';
+
 
 @Component({
   moduleId: module.id,
@@ -27,10 +29,17 @@ export class AuthentificationComponent implements OnInit {
 
   login(dataForm) {
 
+    console.log(dataForm);
+
+    dataForm.passwordUser = Md5.hashStr(dataForm.passwordUser);
+
     if (!this.validateEmail(dataForm.emailUser.trim())) {
       this.invalidEmail = true;
     }
     if (this.validateEmail(dataForm.emailUser.trim())) {
+
+      console.log(dataForm);
+
       this._usersService.login(dataForm).subscribe(
         dataServ => {
           console.log('dataServ ', dataServ);
