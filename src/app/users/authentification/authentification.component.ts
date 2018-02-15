@@ -21,6 +21,7 @@ export class AuthentificationComponent implements OnInit {
   cardTitle = 'Connection';
   cardButton = 'Connection';
   textLink = `Vous n'avez pas de compte ?`;
+  isAuthenticated = false;
 
   constructor(private _usersService: UsersService, private router: Router) { }
 
@@ -29,24 +30,22 @@ export class AuthentificationComponent implements OnInit {
 
   login(dataForm) {
 
-    console.log(dataForm);
-
     dataForm.passwordUser = Md5.hashStr(dataForm.passwordUser);
 
     if (!this.validateEmail(dataForm.emailUser.trim())) {
       this.invalidEmail = true;
     }
     if (this.validateEmail(dataForm.emailUser.trim())) {
-
-      console.log(dataForm);
-
       this._usersService.login(dataForm).subscribe(
         dataServ => {
           console.log('dataServ ', dataServ);
-          console.log('dataServ.result.status ', dataServ.result.status);
 
           if (dataServ.result.status === 'success') {
             this.error = false;
+            this.isAuthenticated = true;
+            this._usersService.setCurrentUser(dataServ.result.user['0']);
+
+            localStorage.setItem('data', JSON.stringify(dataServ.token));
             this.router.navigate(['/compte']);
           } else {
             this.error = true;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _userService: UsersService) { }
 
   ngOnInit() {
+    this._userService.currentUser.subscribe(
+      data => console.log('compte data' , data)
+    );
   }
 
 }
