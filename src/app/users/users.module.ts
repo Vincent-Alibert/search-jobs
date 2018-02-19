@@ -6,6 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { RouterModule } from '@angular/router';
 import { CompteComponent } from './compte/compte.component';
 import { UsersService } from './users.service';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -16,10 +17,12 @@ import { UsersService } from './users.service';
   declarations: [
     AuthentificationComponent,
     InscriptionComponent,
-    CompteComponent
+    CompteComponent,
+    NotFoundComponent
   ],
   exports: [
-    AuthentificationComponent
+    AuthentificationComponent,
+    NotFoundComponent
   ],
   providers: [UsersService]
 })

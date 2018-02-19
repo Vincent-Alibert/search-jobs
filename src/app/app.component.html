@@ -10,11 +10,17 @@
         <li class="nav-item " routerLinkActive="active">
           <a class="nav-link" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" >
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/offres">offres</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" >
+        <li class="nav-item" *ngIf="!userService.userIsAuthenticated()" routerLinkActive="active">
           <a class="nav-link" routerLink="/connection">connection</a>
+        </li>
+        <li class="nav-item" *ngIf="userService.userIsAuthenticated()" routerLinkActive="active">
+          <a class="nav-link" routerLink="/compte">Compte</a>
+        </li>
+        <li class="nav-item" *ngIf="userService.userIsAuthenticated()">
+          <a class="nav-link" routerLink="/" (click)='userService.logOut()'>Se déconnecter</a>
         </li>
       </ul>
     </div>

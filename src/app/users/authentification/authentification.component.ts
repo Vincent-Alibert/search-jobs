@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5/dist/md5';
+import * as jwtDecode from 'jwt-decode';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AuthentificationComponent implements OnInit {
   cardTitle = 'Connection';
   cardButton = 'Connection';
   textLink = `Vous n'avez pas de compte ?`;
-  isAuthenticated = false;
+
+  decryptToken: any;
 
   constructor(private _usersService: UsersService, private router: Router) { }
 
@@ -29,34 +31,41 @@ export class AuthentificationComponent implements OnInit {
   }
 
   login(dataForm) {
-
     dataForm.passwordUser = Md5.hashStr(dataForm.passwordUser);
-
     if (!this.validateEmail(dataForm.emailUser.trim())) {
       this.invalidEmail = true;
     }
     if (this.validateEmail(dataForm.emailUser.trim())) {
       this._usersService.login(dataForm).subscribe(
         dataServ => {
-          console.log('dataServ ', dataServ);
-
-          if (dataServ.result.status === 'success') {
+          if (dataServ.hasOwnProperty('result')) {
+            if (dataServ.result.status === 'error') {
+              this.error = true;
+              this.invalidEmail = false;
+              this.errorMsg = dataServ.result.user;
+            }
+          }
+          if (dataServ.hasOwnProperty('token')) {
+            this.decryptToken = this.decodeToken(dataServ.token);
             this.error = false;
-            this.isAuthenticated = true;
-            this._usersService.setCurrentUser(dataServ.result.user['0']);
-
+            this._usersService.setCurrentUser(this.decryptToken.value.user['0']);
             localStorage.setItem('data', JSON.stringify(dataServ.token));
             this.router.navigate(['/compte']);
-          } else {
-            this.error = true;
-            this.invalidEmail = false;
-            this.errorMsg = dataServ.result.user;
           }
+          // décrypter le token puis traiter ci dessous
         },
-        error => console.log(`error = ${error}`)
+        error => {
+          this.error = true;
+          this.invalidEmail = false;
+          this.errorMsg = error.result.user;
+        }
       );
     }
 
+  }
+
+  decodeToken(token) {
+    return jwtDecode(token);
   }
 
   validateEmail(email) {

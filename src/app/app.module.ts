@@ -5,7 +5,7 @@ import { OffresModule } from './offres/offres.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+// import { NotFoundComponent } from './not-found/not-found.component';
 import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent
+    // NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     UsersModule,
     AppRoutingModule
   ],
+  // exports: [NotFoundComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
