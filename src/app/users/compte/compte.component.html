@@ -8,7 +8,19 @@
 
 <div *ngIf="userService.userIsAuthenticated()" class="container">
   <div class="row">
-    là
-    {{currentUser.nomUser}}
+    <h1>Bienvenue {{currentUser.prenomUser}}</h1>
   </div>
+
+  <div *ngIf="userService.userIsMember()" class="row">
+    <div class="col-12">
+      <p>Retrouvez ci dessous la liste des offres pour laquelle vous avez postulé :</p>
+    </div>
+  </div>
+
+  <div *ngIf="userService.userIsFirm()" class="row">
+    <div class="col-12">
+      <p>Retrouvez ci-dessous la liste de vos offres d'emplois :</p>
+    </div>
+  </div>
+
 </div>

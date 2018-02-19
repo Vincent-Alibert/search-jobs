@@ -5,16 +5,20 @@ import 'rxjs/add/operator/do';
 import { User } from './class/user';
 import { Router } from '@angular/router';
 
+import * as jwtDecode from 'jwt-decode';
+
 @Injectable()
 export class UsersService {
 
   private ROUTE = 'http://localhost:4201/api/v1';
 
-  private currentUser: User;
+  currentUser: User;
   private isAdmin = false;
   private isFirm = false;
   private isMember = false;
   private isAuthenticated = false;
+
+  private decryptToken: any;
 
   constructor(private _http: Http, private router: Router) { }
 
@@ -23,25 +27,35 @@ export class UsersService {
       .map(res => res.json());
   }
 
-  setCurrentUser(user) {
-    this.currentUser = user;
-    if (this.currentUser != null && this.currentUser.administrateur === 1) {
-      this.isAdmin = true;
-      this.isFirm = false;
-      this.isMember = false;
-      this.isAuthenticated = true;
-    } else if (this.currentUser != null && this.currentUser.entreprise === 1) {
-      this.isAdmin = false;
-      this.isFirm = true;
-      this.isMember = false;
-      this.isAuthenticated = true;
-    } else if (this.currentUser != null && this.currentUser.administrateur === 0 && this.currentUser.entreprise === 0) {
-      this.isAdmin = false;
-      this.isFirm = false;
-      this.isMember = true;
-      this.isAuthenticated = true;
+  setCurrentUser() {
+
+    if (localStorage.getItem('data')) {
+      this.decryptToken = this.decodeToken(localStorage.getItem('data'));
+      this.currentUser = this.decryptToken.value.user['0'];
+      if (this.currentUser !== undefined && this.currentUser.administrateur === 1) {
+        this.isAdmin = true;
+        this.isFirm = false;
+        this.isMember = false;
+        this.isAuthenticated = true;
+      } else if (this.currentUser !== undefined && this.currentUser.entreprise === 1) {
+        this.isAdmin = false;
+        this.isFirm = true;
+        this.isMember = false;
+        this.isAuthenticated = true;
+      } else if (this.currentUser !== undefined && this.currentUser.administrateur === 0 && this.currentUser.entreprise === 0) {
+        this.isAdmin = false;
+        this.isFirm = false;
+        this.isMember = true;
+        this.isAuthenticated = true;
+      }
+    } else {
+      this.currentUser = undefined;
     }
 
+  }
+
+  decodeToken(token) {
+    return jwtDecode(token);
   }
 
   userIsLoggedIn() {
@@ -61,6 +75,7 @@ export class UsersService {
   getCurrentUser() {
     return this.currentUser;
   }
+
   userIsAuthenticated() {
     return this.isAuthenticated;
   }

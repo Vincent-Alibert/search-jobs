@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5/dist/md5';
-import * as jwtDecode from 'jwt-decode';
 
 
 @Component({
@@ -23,7 +22,6 @@ export class AuthentificationComponent implements OnInit {
   cardButton = 'Connection';
   textLink = `Vous n'avez pas de compte ?`;
 
-  decryptToken: any;
 
   constructor(private _usersService: UsersService, private router: Router) { }
 
@@ -46,13 +44,11 @@ export class AuthentificationComponent implements OnInit {
             }
           }
           if (dataServ.hasOwnProperty('token')) {
-            this.decryptToken = this.decodeToken(dataServ.token);
             this.error = false;
-            this._usersService.setCurrentUser(this.decryptToken.value.user['0']);
             localStorage.setItem('data', JSON.stringify(dataServ.token));
+            this._usersService.setCurrentUser();
             this.router.navigate(['/compte']);
           }
-          // décrypter le token puis traiter ci dessous
         },
         error => {
           this.error = true;
@@ -62,10 +58,6 @@ export class AuthentificationComponent implements OnInit {
       );
     }
 
-  }
-
-  decodeToken(token) {
-    return jwtDecode(token);
   }
 
   validateEmail(email) {

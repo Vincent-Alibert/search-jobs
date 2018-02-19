@@ -15,7 +15,7 @@ export class CompteComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    this.currentUser = this.userService.getCurrentUser;
+    this.currentUser = this.userService.currentUser;
   }
 
 }
