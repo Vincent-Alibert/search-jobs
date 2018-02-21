@@ -1,0 +1,12 @@
+<div *ngIf="!userService.userIsAuthenticated()" class="container">
+  <div class="row">
+    <H1>Vous n'êtes pas autorisé à accéder à cette page.</H1>
+    <p>Veillez vous <a routerLink="/connection">connecter</a> ou retourner sur la page d'<a routerLink="/home">accueil</a></p>
+  </div>
+</div>
+
+<div *ngIf="userService.userIsAuthenticated()" class="container">
+  <div class="row">
+    add jobs works
+  </div>
+</div>

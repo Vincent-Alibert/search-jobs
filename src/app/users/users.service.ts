@@ -29,7 +29,7 @@ export class UsersService {
 
   setCurrentUser() {
 
-    if (localStorage.getItem('data')) {
+    if (this.userIsLoggedIn()) {
       this.decryptToken = this.decodeToken(localStorage.getItem('data'));
       this.currentUser = this.decryptToken.value.user['0'];
       if (this.currentUser !== undefined && this.currentUser.administrateur === 1) {
@@ -59,7 +59,7 @@ export class UsersService {
   }
 
   userIsLoggedIn() {
-    return localStorage.getItem('data');
+    return !!localStorage.getItem('data');
   }
 
   logOut() {

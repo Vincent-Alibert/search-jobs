@@ -8,10 +8,12 @@ import { AuthentificationComponent } from './users/authentification/authentifica
 import { InscriptionComponent } from './users/inscription/inscription.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompteComponent } from './users/compte/compte.component';
+import { AddOffreComponent } from './offres/add-offre/add-offre.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'offres/add', component: AddOffreComponent },
   { path: 'offres/:id', component: DetailsComponent },
   { path: 'offres', component: ListOffresComponent },
   { path: 'connection', component: AuthentificationComponent },

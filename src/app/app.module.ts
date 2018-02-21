@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent
     // NotFoundComponent
   ],
   imports: [
