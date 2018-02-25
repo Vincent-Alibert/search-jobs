@@ -1,4 +1,7 @@
-.invalid-feedback{
+.invalid-feedback, .valid-feedback{
     display: block;
     text-align: left;
+}
+#isFirm{
+    margin-bottom: 20px;
 }

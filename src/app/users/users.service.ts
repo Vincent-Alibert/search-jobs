@@ -27,6 +27,11 @@ export class UsersService {
       .map(res => res.json());
   }
 
+  addUser(FormData) {
+    return this._http.post(this.ROUTE + '/users/add', FormData)
+      .map(res => res.json());
+  }
+
   setCurrentUser() {
 
     if (this.userIsLoggedIn()) {

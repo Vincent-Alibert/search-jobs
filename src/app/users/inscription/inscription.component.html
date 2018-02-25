@@ -1,10 +1,165 @@
 <div class="container">
   <div class="row">
-    <h1>Inscription</h1>
+    <h1 class="col-12">Inscription</h1>
+    <p class="col-12"><em>Tous les champs sont obligatoires</em></p>
+    <div *ngIf="inscriptionIsOk" class="col-12 text-center">
+      <p class="valid-feedback">Félicitation !! Votre inscription a bien été prise en compte. Rendez-sur la page <a routerLink="/connection">connexion</a> afin d'accéder à votre compte.</p>
+    </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <form action=""></form>
+    <form class="col-12" [formGroup]="formInscription" (ngSubmit)='addUser(formInscription.value)' novalidate>
+
+      <div class="row" formGroupName="user">
+
+        <div class="col-6">
+
+          <div class="form-group row">
+            <label for="nomUser" class="col-2 col-form-label">Nom</label>
+            <div class="col-10">
+              <input class="form-control" id="nomUser" formControlName="nomUser">
+              <div *ngIf="(formInscription.get('user.nomUser').pristine || formInscription.get('user.nomUser').dirty ) && formInscription.get('user.nomUser').errors && formInscription.get('user.nomUser').touched" 
+              class="invalid-feedback">
+                Merci de rentrer votre nom.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="surnameUser" class="col-2 col-form-label">Prénom</label>
+            <div class="col-10">
+              <input id="surnameUser" class="form-control" formControlName="prenomUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.prenomUser').pristine ||formInscription.get('user.prenomUser').dirty) && formInscription.get('user.prenomUser').errors && formInscription.get('user.prenomUser').touched" >
+                Merci de rentrer votre prénom.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="mailUser" class="col-2 col-form-label">Email</label>
+            <div class="col-10">
+              <input type="email" class="form-control" id="mailUser" formControlName="mailUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.mailUser').pristine || formInscription.get('user.mailUser').dirty) && formInscription.get('user.mailUser').errors && formInscription.get('user.mailUser').touched" >
+                Merci de rentrer un email valide.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="passwordUser" class="col-3 col-form-label">Mot de passe</label>
+            <div class="col-9">
+              <input type="password" class="form-control" id="passwordUser" formControlName="passwordUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordUser').pristine || formInscription.get('user.passwordUser').dirty) && formInscription.get('user.passwordUser').errors && formInscription.get('user.passwordUser').touched" >
+                Ce champ est obligatoire.
+              </div>
+              <div class="invalid-feedback" *ngIf="!samePassword" >
+                Les mots de passe ne sont pas identiques. Veuillez les resaisir et recommencer svp.
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- fin col-6 -->
+
+        <div class="col-6">
+
+          <div class="form-group row">
+            <label for="rueUser" class="col-2 col-form-label">Rue</label>
+            <div class="col-10">
+              <input class="form-control" id="rueUser" formControlName="rueUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.rueUser').pristine || formInscription.get('user.rueUser').dirty) && formInscription.get('user.rueUser').errors && formInscription.get('user.rueUser').touched" >
+                Merci de rentrer votre rue.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="codePostalUser" class="col-3 col-form-label">Code postal</label>
+            <div class="col-9">
+              <input id="codePostalUser" class="form-control" formControlName="codePostalUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.codePostalUser').pristine || formInscription.get('user.codePostalUser').dirty) && formInscription.get('user.codePostalUser').errors && formInscription.get('user.codePostalUser').touched" >
+                Merci de rentrer votre code postal.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="villeUser" class="col-2 col-form-label">Ville</label>
+            <div class="col-10">
+              <input type="email" class="form-control" id="villeUser" formControlName="villeUser">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.villeUser').pristine || formInscription.get('user.villeUser').dirty) && formInscription.get('user.villeUser').errors && formInscription.get('user.villeUser').touched" >
+                Merci de rentrer votre ville.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="passwordVerify" class="col-5 col-form-label">Mot de passe vérification</label>
+            <div class="col-7">
+              <input type="password" class="form-control" id="passwordVerify" formControlName="passwordVerify">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordVerify').pristine || formInscription.get('user.passwordVerify').dirty) && formInscription.get('user.passwordVerify').errors && formInscription.get('user.passwordVerify').touched" >
+                Ce champ est obligatoire.
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+        <!-- fin col-6 -->
+        <div class="col-12" id="isFirm">
+          <p>Êtes-vous une entreprise ? </p>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="entreprise" id="inlineRadio1" formControlName="entreprise" value="1">
+            <label class="form-check-label" for="inlineRadio1">oui</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input checked class="form-check-input" type="radio" name="entreprise" id="inlineRadio2" formControlName="entreprise" value="0">
+            <label class="form-check-label" for="inlineRadio2">non</label>
+          </div>
+        </div>
+        
+          <div *ngIf="formInscription.get('user.entreprise').value == 1" class="col-6">
+
+            <div class="form-group row">
+              <label for="nomEnt" class="col-4 col-form-label">Nom de l'entreprise</label>
+              <div class="col-8">
+                <input class="form-control" id="nomEnt" formControlName="nomEnt">
+                <div class="invalid-feedback" *ngIf="(formInscription.get('user.nomEnt').pristine || formInscription.get('user.nomEnt').dirty) && formInscription.get('user.nomEnt').errors && formInscription.get('user.nomEnt').touched" >
+                  Merci de rentrer le nom de votre entreprise.
+                </div>
+              </div>
+            </div>
+
+            <p>Coordonnée géographique :</p>
+
+            <div class="form-group row">
+              <label for="latitudeEnt" class="col-3 col-form-label">Latitude</label>
+              <div class="col-9">
+                <input type="text" id="latitudeEnt" class="form-control" formControlName="latitudeEnt">
+                <div class="invalid-feedback" *ngIf="(formInscription.get('user.latitudeEnt').pristine || formInscription.get('user.latitudeEnt').dirty) && formInscription.get('user.latitudeEnt').errors && formInscription.get('user.latitudeEnt').touched" >
+                  Merci de rentrer la latitude de votre entreprise.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="longitudeEnt" class="col-3 col-form-label">Longitude</label>
+              <div class="col-9">
+                <input type="text" class="form-control" id="longitudeEnt" formControlName="longitudeEnt">
+                <div class="invalid-feedback" *ngIf="(formInscription.get('user.longitudeEnt').pristine || formInscription.get('user.longitudeEnt').dirty) && formInscription.get('user.longitudeEnt').errors && formInscription.get('user.longitudeEnt').touched" >
+                  Merci de rentrer la latitude de votre entreprise.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+      <button type="submit" [disabled]="formInscription.invalid" class="btn btn-primary">S'inscrire</button>
+      <!-- fin formGroup user-->
+    </form>
   </div>
 </div>
+<p>Form value: {{ formInscription.value | json }}</p>
+<p>Form status: {{ formInscription.status | json }}</p>
