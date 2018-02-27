@@ -1,12 +1,139 @@
 <div *ngIf="!userService.userIsAuthenticated()" class="container">
   <div class="row">
     <H1>Vous n'êtes pas autorisé à accéder à cette page.</H1>
-    <p>Veillez vous <a routerLink="/connection">connecter</a> ou retourner sur la page d'<a routerLink="/home">accueil</a></p>
+    <p>Veillez vous
+      <a routerLink="/connection">connecter</a> ou retourner sur la page d'
+      <a routerLink="/home">accueil</a>
+    </p>
   </div>
 </div>
 
 <div *ngIf="userService.userIsAuthenticated()" class="container">
   <div class="row">
-    add jobs works
+    <h1 class="col-12">Ajouter une annonce</h1>
+    <p class="col-12">
+      <em>Tous les champs sont obligatoires</em>
+    </p>
+    <!--
+    <div *ngIf="ajoutIsOk" class="col-12 text-center">
+      <p class="valid-feedback">Félicitation !! Votre annonce a bien été enregistrée.</p>
+    </div> -->
   </div>
 </div>
+<div *ngIf="userService.userIsAuthenticated()" class="container">
+  <div class="row">
+    <form class="col-12" [formGroup]="formAddOffre" (ngSubmit)='addOffre(formAddOffre.value)' novalidate>
+      <div class="row" formGroupName="offre">
+        <div class="col-12 col-md-6">
+
+          <div class="form-group row">
+            <label for="titreOffre" class="col-4 col-form-label">Titre de l'offre</label>
+            <div class="col-8">
+              <input class="form-control" id="titreOffre" formControlName="titreOffre">
+              <div *ngIf="(formAddOffre.get('offre.titreOffre').pristine || formAddOffre.get('offre.titreOffre').dirty ) && formAddOffre.get('offre.titreOffre').errors && formAddOffre.get('offre.titreOffre').touched"
+                class="invalid-feedback">
+                Merci de rentrer le titre de l'offre.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="dateDebutPoste" class="col-4 col-form-label">Date de début de l'offre</label>
+            <div class="col-8">
+              <input id="dateDebutPoste" placeholder="asap ou aaaa/mm/dd" class="form-control" formControlName="dateDebutPoste">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.dateDebutPoste').pristine ||formAddOffre.get('offre.dateDebutPoste').dirty) && formAddOffre.get('offre.dateDebutPoste').errors && formAddOffre.get('offre.dateDebutPoste').touched">
+                Merci de rentrer la date de début de l'offre.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="introduction" class="col-4 col-form-label">Introduction</label>
+            <div class="col-8">
+              <input id="introduction" class="form-control" formControlName="introduction">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.introduction').pristine ||formAddOffre.get('offre.introduction').dirty) && formAddOffre.get('offre.introduction').errors && formAddOffre.get('offre.introduction').touched">
+                Merci de rentrer une introduction.
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description" class="col-4 col-form-label">Description</label>
+            <div class="col-8">
+              <textarea id="description" class="form-control" formControlName="description" cols="30" rows="10"></textarea>
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.description').pristine ||formAddOffre.get('offre.description').dirty) && formAddOffre.get('offre.description').errors && formAddOffre.get('offre.description').touched">
+                Merci de rentrer une description.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="salaireOffre" class="col-4 col-form-label">Salaire proposé</label>
+            <div class="col-8">
+              <input id="salaireOffre" class="form-control" formControlName="salaireOffre">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.salaireOffre').pristine ||formAddOffre.get('offre.salaireOffre').dirty) && formAddOffre.get('offre.salaireOffre').errors && formAddOffre.get('offre.salaireOffre').touched">
+                Merci de rentrer un salaire.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+
+          <p>Coordonnée géographique de l'offre :</p>
+          <div class="form-group row">
+            <label for="rueOffre" class="col-3 col-form-label">Rue</label>
+            <div class="col-9">
+              <input class="form-control" id="rueOffre" formControlName="rueOffre">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.rueOffre').pristine || formAddOffre.get('offre.rueOffre').dirty) && formAddOffre.get('offre.rueOffre').errors && formAddOffre.get('offre.rueOffre').touched">
+                Merci de rentrer votre rue.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="codePostalOffre" class="col-3 col-form-label">Code postal</label>
+            <div class="col-9">
+              <input id="codePostalOffre" class="form-control" formControlName="codePostalOffre">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.codePostalOffre').pristine || formAddOffre.get('offre.codePostalOffre').dirty) && formAddOffre.get('offre.codePostalOffre').errors && formAddOffre.get('offre.codePostalOffre').touched">
+                Merci de rentrer votre code postal.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="villeOffre" class="col-3 col-form-label">Ville</label>
+            <div class="col-9">
+              <input type="email" class="form-control" id="villeOffre" formControlName="villeOffre">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.villeOffre').pristine || formAddOffre.get('offre.villeOffre').dirty) && formAddOffre.get('offre.villeOffre').errors && formAddOffre.get('offre.villeOffre').touched">
+                Merci de rentrer votre ville.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="latittude" class="col-3 col-form-label">Latittude</label>
+            <div class="col-9">
+              <input type="text" id="latittude" class="form-control" formControlName="latittude">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.latittude').pristine || formAddOffre.get('offre.latittude').dirty) && formAddOffre.get('offre.latittude').errors && formAddOffre.get('offre.latittude').touched">
+                Merci de rentrer la latittude de l'offre.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="longitude" class="col-3 col-form-label">Longitude</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="longitude" formControlName="longitude">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.longitude').pristine || formAddOffre.get('offre.longitude').dirty) && formAddOffre.get('offre.longitude').errors && formAddOffre.get('offre.longitude').touched">
+                Merci de rentrer la latittude de l'offre.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="formAddOffre.invalid" class="btn btn-primary">S'inscrire</button>
+    </form>
+  </div>
+</div>
+
+<p>Form value: {{ formAddOffre.value | json }}</p>
+<p>Form status: {{ formAddOffre.status | json }}</p>

@@ -21,4 +21,9 @@ export class OffresService {
               .do( res => console.log(res));
   }
 
+  addOffre(FormData) {
+    return this._http.post(this.ROUTE + '/offres/add', FormData)
+      .map(res => res.json());
+  }
+
 }

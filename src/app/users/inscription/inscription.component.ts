@@ -67,10 +67,8 @@ export class InscriptionComponent implements OnInit {
 
   addUser(FormData) {
     if (FormData.user.passwordUser.toString() === FormData.user.passwordVerify.toString()) {
-      console.log('true');
       this.samePassword = true;
     } else {
-      console.log('false');
       this.samePassword = false;
       this.formInscription.get('user.passwordUser').reset();
       this.formInscription.get('user.passwordVerify').reset();
@@ -80,14 +78,11 @@ export class InscriptionComponent implements OnInit {
       FormData.user.passwordVerify = Md5.hashStr(FormData.user.passwordVerify);
       this._usersService.addUser(FormData).subscribe(
         data => {
-          console.log('subscribe data', data);
-          console.log('subscribe data', data.result.status);
           if (data.result.status === 'success') {
             this.formInscription.reset();
             this.inscriptionIsOk = true;
           }
           if (data.result.status === 'errors') {
-            // this.formInscription.setErrors
             for (let i = 0; i < data.result.arrayError.length; i++) {
               console.log(data.result.arrayError[i]);
               this.formInscription.get('user.' + data.result.arrayError[i]).setErrors({ 'incorrect': true });

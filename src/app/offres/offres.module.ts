@@ -5,6 +5,7 @@ import { SearchOffresComponent } from './search-offres/search-offres.component';
 import { OffresService } from './offres.service';
 import { DetailsComponent } from './details/details.component';
 import { AddOffreComponent } from './add-offre/add-offre.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,14 @@ import { AddOffreComponent } from './add-offre/add-offre.component';
     AddOffreComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  exports: [ListOffresComponent, SearchOffresComponent],
+  exports: [
+    ListOffresComponent,
+    SearchOffresComponent
+  ],
   providers: [OffresService]
 })
 export class OffresModule { }

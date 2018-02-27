@@ -4,7 +4,11 @@ export class Offre {
     dateDebutPoste: string;
     introduction: string;
     description: string;
-    latittude: number; longitude: number;
-    rueOffre: string; codePostalOffre: string; villeOffre: string;
-    salaireOffre: number; fk_idUser: number;
+    latittude: number;
+    longitude: number;
+    rueOffre: string;
+    codePostalOffre: string;
+    villeOffre: string;
+    salaireOffre: number;
+    fk_idUser: number;
 }
