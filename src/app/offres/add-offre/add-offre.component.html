@@ -14,10 +14,11 @@
     <p class="col-12">
       <em>Tous les champs sont obligatoires</em>
     </p>
-    <!--
+
     <div *ngIf="ajoutIsOk" class="col-12 text-center">
       <p class="valid-feedback">Félicitation !! Votre annonce a bien été enregistrée.</p>
-    </div> -->
+    </div>
+    
   </div>
 </div>
 <div *ngIf="userService.userIsAuthenticated()" class="container">
@@ -110,11 +111,11 @@
           </div>
 
           <div class="form-group row">
-            <label for="latittude" class="col-3 col-form-label">Latittude</label>
+            <label for="latitude" class="col-3 col-form-label">Latitude</label>
             <div class="col-9">
-              <input type="text" id="latittude" class="form-control" formControlName="latittude">
-              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.latittude').pristine || formAddOffre.get('offre.latittude').dirty) && formAddOffre.get('offre.latittude').errors && formAddOffre.get('offre.latittude').touched">
-                Merci de rentrer la latittude de l'offre.
+              <input type="text" id="latitude" class="form-control" formControlName="latitude">
+              <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.latitude').pristine || formAddOffre.get('offre.latitude').dirty) && formAddOffre.get('offre.latitude').errors && formAddOffre.get('offre.latitude').touched">
+                Merci de rentrer la latitude de l'offre.
               </div>
             </div>
           </div>
@@ -124,7 +125,7 @@
             <div class="col-9">
               <input type="text" class="form-control" id="longitude" formControlName="longitude">
               <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.longitude').pristine || formAddOffre.get('offre.longitude').dirty) && formAddOffre.get('offre.longitude').errors && formAddOffre.get('offre.longitude').touched">
-                Merci de rentrer la latittude de l'offre.
+                Merci de rentrer la longitude de l'offre.
               </div>
             </div>
           </div>
@@ -134,6 +135,3 @@
     </form>
   </div>
 </div>
-
-<p>Form value: {{ formAddOffre.value | json }}</p>
-<p>Form status: {{ formAddOffre.status | json }}</p>

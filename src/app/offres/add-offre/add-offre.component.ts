@@ -24,12 +24,14 @@ export class AddOffreComponent implements OnInit {
         dateDebutPoste: ['', [Validators.required, Validators.pattern('(asap)|([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))')]],
         introduction: ['', Validators.required],
         description: ['', Validators.required],
-        latittude: ['', [Validators.required, Validators.pattern('^[+-]?[0-9]+(\.[0-9]+)?')]],
+        latitude: ['', [Validators.required, Validators.pattern('^[+-]?[0-9]+(\.[0-9]+)?')]],
         longitude: ['', [Validators.required, Validators.pattern('^[+-]?[0-9]+(\.[0-9]+)?')]],
         rueOffre: ['', Validators.required],
         codePostalOffre: ['', Validators.required],
         villeOffre: ['', Validators.required],
-        salaireOffre: ['', Validators.required]
+        salaireOffre: ['', Validators.required],
+        datePublication: new Date(),
+        fk_idUser: this.userService.currentUser.idUser
       })
     });
   }
@@ -37,9 +39,18 @@ export class AddOffreComponent implements OnInit {
     console.log('formData', formData);
     this.offresService.addOffre(formData).subscribe(
       data => {
-        console.log('data', data);
+        if (data.result.status === 'success') {
+          this.formAddOffre.reset();
+          this.ajoutIsOk = true;
+        }
+        if (data.result.status === 'errors') {
+          for (let i = 0; i < data.result.arrayError.length; i++) {
+            console.log(data.result.arrayError[i]);
+            this.formAddOffre.get('offre.' + data.result.arrayError[i]).setErrors({ 'incorrect': true });
+          }
+        }
       }
-    )
+    );
   }
 
 }

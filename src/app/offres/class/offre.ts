@@ -1,10 +1,11 @@
 export class Offre {
     idOffre: number;
-    titreOffre: string; datePublication: Date;
+    titreOffre: string;
+    datePublication: Date;
     dateDebutPoste: string;
     introduction: string;
     description: string;
-    latittude: number;
+    latitude: number;
     longitude: number;
     rueOffre: string;
     codePostalOffre: string;
