@@ -9,7 +9,7 @@ export class OffresService {
 
   private ROUTE = 'http://localhost:4201/api/v1';
 
-  constructor(private _http: Http, userService: UsersService) { }
+  constructor(private _http: Http, private userService: UsersService) { }
 
   getAllOffres() {
     return this._http.get(this.ROUTE + '/offres')
@@ -21,8 +21,9 @@ export class OffresService {
               .do( res => console.log(res));
   }
 
-  addOffre(FormData) {
-    return this._http.post(this.ROUTE + '/offres/add', FormData)
+  addOffre(FormData, token) {
+    const requestOptions = this.userService.addAuthHeader(token);
+    return this._http.post(this.ROUTE + '/offres/add', FormData, requestOptions)
       .map(res => res.json());
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { User } from './class/user';
@@ -57,6 +57,13 @@ export class UsersService {
       this.currentUser = undefined;
     }
 
+  }
+
+  addAuthHeader(token) {
+    const authorizationHeader = new Headers({
+      'Authorization' : 'Bearer ' + token
+    });
+    return new RequestOptions({ headers: authorizationHeader});
   }
 
   decodeToken(token) {

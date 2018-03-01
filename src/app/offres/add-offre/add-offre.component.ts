@@ -36,8 +36,8 @@ export class AddOffreComponent implements OnInit {
     });
   }
   addOffre(formData) {
-    console.log('formData', formData);
-    this.offresService.addOffre(formData).subscribe(
+    const token = JSON.parse(localStorage.getItem('data'));
+    this.offresService.addOffre(formData, token).subscribe(
       data => {
         if (data.result.status === 'success') {
           this.formAddOffre.reset();
@@ -45,7 +45,7 @@ export class AddOffreComponent implements OnInit {
         }
         if (data.result.status === 'errors') {
           for (let i = 0; i < data.result.arrayError.length; i++) {
-            console.log(data.result.arrayError[i]);
+            this.ajoutIsOk = false;
             this.formAddOffre.get('offre.' + data.result.arrayError[i]).setErrors({ 'incorrect': true });
           }
         }
