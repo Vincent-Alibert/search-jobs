@@ -10,6 +10,9 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { CompteAdminComponent } from './compte-admin/compte-admin.component';
 import { CompteFirmComponent } from './compte-firm/compte-firm.component';
 import { CompteUserComponent } from './compte-user/compte-user.component';
+import { StatistiquesComponent } from './statistiques/statistiques.component';
+import { GestionUserComponent } from './gestion-user/gestion-user.component';
+import { GestionOffresComponent } from '../offres/gestion-offres/gestion-offres.component';
 
 @NgModule({
   imports: [
@@ -25,7 +28,10 @@ import { CompteUserComponent } from './compte-user/compte-user.component';
     NotFoundComponent,
     CompteAdminComponent,
     CompteFirmComponent,
-    CompteUserComponent
+    CompteUserComponent,
+    StatistiquesComponent,
+    GestionUserComponent,
+    GestionOffresComponent
   ],
   exports: [
     AuthentificationComponent,
