@@ -37,6 +37,7 @@ export class AuthentificationComponent implements OnInit {
       this._usersService.login(dataForm).subscribe(
         dataServ => {
           if (dataServ.hasOwnProperty('result')) {
+            
             if (dataServ.result.status === 'error') {
               this.error = true;
               this.invalidEmail = false;
@@ -53,7 +54,7 @@ export class AuthentificationComponent implements OnInit {
         error => {
           this.error = true;
           this.invalidEmail = false;
-          this.errorMsg = error.result.user;
+          this.errorMsg = "Mail ou mot de passe invalide";
         }
       );
     }

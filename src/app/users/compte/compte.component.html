@@ -10,16 +10,16 @@
     <h1>Bienvenue {{currentUser.prenomUser}}</h1>
   </div>
 
+  <div *ngIf="userService.userIsAdmin()" class="row">
+    <vawec-compte-admin class="col-12"></vawec-compte-admin>
+  </div>
+
   <div *ngIf="userService.userIsMember()" class="row">
-    <div class="col-12">
-      <p>Retrouvez ci dessous la liste des offres pour laquelle vous avez postulé :</p>
-    </div>
+    <vawec-compte-user class="col-12"></vawec-compte-user>
   </div>
 
   <div *ngIf="userService.userIsFirm()" class="row">
-    <div class="col-12">
-      <p>Retrouvez ci-dessous la liste de vos offres d'emplois :</p>
-    </div>
+    <vawec-compte-firm class="col-12"></vawec-compte-firm>
   </div>
 
 </div>

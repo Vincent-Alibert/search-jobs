@@ -20,7 +20,11 @@ export class UsersService {
 
   private decryptToken: any;
 
-  constructor(private _http: Http, private router: Router) { }
+  error = false;
+
+  constructor(private _http: Http, private router: Router) {
+    console.log('userService constructor');
+   }
 
   login(data) {
     return this._http.post(this.ROUTE + '/login', data)
@@ -30,6 +34,13 @@ export class UsersService {
   addUser(FormData) {
     return this._http.post(this.ROUTE + '/users/add', FormData)
       .map(res => res.json());
+  }
+
+  countData(token) {
+    const requestOptions = this.addAuthHeader(token);
+    return this._http.get(this.ROUTE + '/users/count-data', requestOptions)
+      .map(res => res.json());
+
   }
 
   setCurrentUser() {
@@ -61,9 +72,9 @@ export class UsersService {
 
   addAuthHeader(token) {
     const authorizationHeader = new Headers({
-      'Authorization' : 'Bearer ' + token
+      'Authorization': 'Bearer ' + token
     });
-    return new RequestOptions({ headers: authorizationHeader});
+    return new RequestOptions({ headers: authorizationHeader });
   }
 
   decodeToken(token) {

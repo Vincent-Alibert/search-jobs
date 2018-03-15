@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { CompteComponent } from './compte/compte.component';
 import { UsersService } from './users.service';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { CompteAdminComponent } from './compte-admin/compte-admin.component';
+import { CompteFirmComponent } from './compte-firm/compte-firm.component';
+import { CompteUserComponent } from './compte-user/compte-user.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import { NotFoundComponent } from '../not-found/not-found.component';
     AuthentificationComponent,
     InscriptionComponent,
     CompteComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CompteAdminComponent,
+    CompteFirmComponent,
+    CompteUserComponent
   ],
   exports: [
     AuthentificationComponent,
