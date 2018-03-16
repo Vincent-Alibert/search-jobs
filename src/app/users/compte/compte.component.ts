@@ -11,10 +11,6 @@ import { User } from '../class/user';
 export class CompteComponent implements OnInit {
 
   currentUser: User;
-  compteNombreUser: number;
-  compteNombreFirm: number;
-  compteNombreOffre: number;
-  errorData: Boolean;
 
   constructor(private userService: UsersService) { }
 

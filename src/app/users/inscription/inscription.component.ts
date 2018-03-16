@@ -84,7 +84,6 @@ export class InscriptionComponent implements OnInit {
           }
           if (data.result.status === 'errors') {
             for (let i = 0; i < data.result.arrayError.length; i++) {
-              console.log(data.result.arrayError[i]);
               this.formInscription.get('user.' + data.result.arrayError[i]).setErrors({ 'incorrect': true });
             }
           }

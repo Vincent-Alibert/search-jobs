@@ -1,34 +1,32 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-12 col-lg-2">
     <div class="row">
-      <h2 class="col-12">Sous menu</h2>
-      <div class="col-12">
-        <button [disabled]="showStat" class="btn btn-primary" (click)="showingStat()">Voir les Statistiques</button>
-      </div>
-      <div class="col-12">
-        <button [disabled]="showGestionUser" class="btn btn-primary" (click)="showingUser()">Gérer les utilisateurs</button>
-      </div>
-      <div class="col-12">
-        <button [disabled]="showGestionFirm" class="btn btn-primary" (click)="showingFirm()">Gérer les entreprises</button>
-      </div>
-      <div class="col-12">
-        <button [disabled]="showGestionOffres" class="btn btn-primary" (click)="showingOffres()">Gérer les offres</button>
-      </div>
+      <button [disabled]="showStat" class="col-3 col-lg-11 btn btn-primary" (click)="showingStat()">
+        Voir les Statistiques
+      </button>
+      <button [disabled]="showGestionUser" class="col-3 col-lg-11 btn btn-primary" (click)="showingUser()">
+        Gérer les utilisateurs
+      </button>
+      <button [disabled]="showGestionFirm" class="col-3 col-lg-11 btn btn-primary" (click)="showingFirm()">
+        Gérer les entreprises
+      </button>
+      <button [disabled]="showGestionOffres" class="col-3 col-lg-11 btn btn-primary" (click)="showingOffres()">
+        Gérer les offres
+      </button>
     </div>
   </div>
-  <div class="col-9">
-   
+  <div class="col-12 col-lg-10">
     <div *ngIf="showStat">
-      <vawec-statistique ></vawec-statistique>
+      <vawec-statistique></vawec-statistique>
     </div>
     <div *ngIf="showGestionUser">
-      <vawec-gestion-user ></vawec-gestion-user>
+      <vawec-gestion-user></vawec-gestion-user>
     </div>
     <div *ngIf="showGestionFirm">
       firm
     </div>
     <div *ngIf="showGestionOffres">
-      <vawec-gestion-offres ></vawec-gestion-offres>
+      <vawec-gestion-offres></vawec-gestion-offres>
     </div>
   </div>
 </div>

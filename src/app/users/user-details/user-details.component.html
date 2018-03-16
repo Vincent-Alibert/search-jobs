@@ -1,0 +1,5 @@
+<div id="profil" *ngIf="userDetails">
+  <div id="header" class="text-center" [ngStyle]="{'background': 'url('+ userDetails.imageUser +')'}">
+    {{userDetails.nomUser}} - {{userDetails.prenomUser}}
+  </div>
+</div>

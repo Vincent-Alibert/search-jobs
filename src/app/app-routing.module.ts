@@ -9,6 +9,7 @@ import { InscriptionComponent } from './users/inscription/inscription.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompteComponent } from './users/compte/compte.component';
 import { AddOffreComponent } from './offres/add-offre/add-offre.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'offres', component: ListOffresComponent },
   { path: 'connection', component: AuthentificationComponent },
   { path: 'inscription', component: InscriptionComponent },
+  { path: 'compte/modifications/:id', component: UserDetailsComponent },
+  { path: 'compte/details/:id', component: UserDetailsComponent },
   { path: 'compte', component: CompteComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

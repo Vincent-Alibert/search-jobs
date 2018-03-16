@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -13,13 +14,16 @@ import { CompteUserComponent } from './compte-user/compte-user.component';
 import { StatistiquesComponent } from './statistiques/statistiques.component';
 import { GestionUserComponent } from './gestion-user/gestion-user.component';
 import { GestionOffresComponent } from '../offres/gestion-offres/gestion-offres.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserModificationComponent } from './user-modification/user-modification.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   declarations: [
     AuthentificationComponent,
@@ -31,7 +35,9 @@ import { GestionOffresComponent } from '../offres/gestion-offres/gestion-offres.
     CompteUserComponent,
     StatistiquesComponent,
     GestionUserComponent,
-    GestionOffresComponent
+    GestionOffresComponent,
+    UserDetailsComponent,
+    UserModificationComponent
   ],
   exports: [
     AuthentificationComponent,
