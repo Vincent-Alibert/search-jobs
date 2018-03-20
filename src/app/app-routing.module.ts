@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'offres/add', component: AddOffreComponent },
-  { path: 'offres/:id', component: DetailsComponent },
+  { path: 'offres/details/:id', component: DetailsComponent },
   { path: 'offres', component: ListOffresComponent },
   { path: 'connection', component: AuthentificationComponent },
   { path: 'inscription', component: InscriptionComponent },

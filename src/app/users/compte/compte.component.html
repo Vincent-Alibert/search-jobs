@@ -15,7 +15,7 @@
   </div>
 
   <div *ngIf="userService.userIsMember()" class="row">
-    <vawec-compte-user class="col-12"></vawec-compte-user>
+    <vawec-compte-user [data]="currentUser" class="col-12"></vawec-compte-user>
   </div>
 
   <div *ngIf="userService.userIsFirm()" class="row">

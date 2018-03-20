@@ -1,5 +1,23 @@
 <div id="profil" *ngIf="userDetails">
   <div id="header" class="text-center" [ngStyle]="{'background': 'url('+ userDetails.imageUser +')'}">
-    {{userDetails.nomUser}} - {{userDetails.prenomUser}}
+    <h1>Profil de {{userDetails.prenomUser}}</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="logo">
+          <img src="{{userDetails.photoUser}}" alt="Vawec">
+        </div>
+      </div>
+      <div class="col-9">
+        <h2>{{userDetails.prenomUser}} {{userDetails.nomUser}}</h2>
+        <p>{{userDetails.mailUser}}</p>
+        <p *ngIf="userDetails.admistrateur">Statut : Administrateur</p>
+        <p *ngIf="userDetails.entreprise">Statut : Entreprise</p>
+        <p *ngIf="!userDetails.admistrateur && !userDetails.entreprise">Statut : Demandeur</p>
+        <p>Inscrit depuis : {{userDetails.dateInscription}}</p>
+        <p>Adresse : {{userDetails.rueUser}} {{userDetails.codePostalUser}} {{userDetails.villeUser}}</p>
+      </div>
+    </div>
   </div>
 </div>

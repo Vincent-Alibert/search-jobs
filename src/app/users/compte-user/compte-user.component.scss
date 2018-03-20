@@ -1,0 +1,16 @@
+.col-4 {
+  margin-bottom: 10px;
+}
+
+svg {
+  width: 20px;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+  .card {
+    color: #212529;
+  }
+}

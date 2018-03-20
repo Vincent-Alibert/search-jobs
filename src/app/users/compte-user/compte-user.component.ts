@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UsersService } from '../users.service';
+import { User } from '../class/user';
+import { Offre } from '../../offres/class/offre';
+import { OffresService } from '../../offres/offres.service';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteUserComponent implements OnInit {
 
-  constructor() { }
+@Input() data : User;
+
+  currentUser: User;
+  offres : Offre[];
+  like: true;
+
+  constructor(private usersService: UsersService, private offreService: OffresService) { }
 
   ngOnInit() {
+    this.currentUser = this.data;
+    this.offreService.getOffreByCandidatureId(this.currentUser.idUser).subscribe(
+      data => {        
+        if (data.status === "success") {
+          this.offres = data.candidature
+        } 
+      },
+      error => console.log('error', error)
+    )
+    console.log('end',this.offres);
   }
-
+  
 }
