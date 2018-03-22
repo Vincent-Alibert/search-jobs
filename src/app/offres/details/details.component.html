@@ -1,3 +1,30 @@
-<p>
-  details works!
-</p>
+<div *ngIf="offreDetails" class="container">
+  <div class="row">
+    <h1>{{offreDetails.titreOffre}}</h1>
+    <div class="col-12">
+      <p class="date">
+        <em>Publiée le {{offreDetails.datePublication | date:'fullDate':'':'fr' }}</em>
+      </p>
+    </div>
+  </div>
+  <div class="row" *ngIf="userService.userIsAuthenticated()">
+    <div class="col-12"  [innerHTML]="offreDetails.description"></div>
+  </div>
+  <div class="row" *ngIf="!userService.userIsAuthenticated()">
+    <div class="col-12" [innerHTML]="offreDetails.introduction"></div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="userService.userIsAuthenticated()">
+      <h3>Détails :</h3>
+      <p>Salaire proposé : <span>{{offreDetails.salaireOffre}}€</span></p>
+      <p>Début du poste : <span>{{offreDetails.dateDebutPoste}}</span></p>
+      <p>Adresse : {{offreDetails.rueOffre}} {{offreDetails.codePostalOffre}} {{offreDetails.villeOffre}}</p>
+    </div>
+    <div class="col-12">
+      <agm-map [latitude]="offreDetails.latitude" [longitude]="offreDetails.longitude">
+        <agm-marker [latitude]="offreDetails.latitude" [longitude]="offreDetails.longitude"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>
+

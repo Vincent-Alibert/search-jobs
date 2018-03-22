@@ -6,6 +6,7 @@ import { OffresService } from './offres.service';
 import { DetailsComponent } from './details/details.component';
 import { AddOffreComponent } from './add-offre/add-offre.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDAxdDncvYE6e8hejC4ZkrzxRcU3JKq8fk'
+    })
   ],
   exports: [
     ListOffresComponent,

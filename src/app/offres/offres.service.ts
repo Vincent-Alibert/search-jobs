@@ -19,6 +19,11 @@ export class OffresService {
       .map(res => res.json());
   }
 
+  getOffreById(id) {
+    return this._http.get(this.ROUTE + `/offres/details/${id}`)
+      .map(res => res.json());
+  }
+
   /**
    * Récupère les offres par Id de l'entreprise
    * @param id 

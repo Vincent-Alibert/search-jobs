@@ -16,7 +16,6 @@ export class CompteUserComponent implements OnInit {
 
   currentUser: User;
   offres : Offre[];
-  like: true;
 
   constructor(private usersService: UsersService, private offreService: OffresService) { }
 

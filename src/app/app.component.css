@@ -1,0 +1,43 @@
+/* footer section styles
+/* ========================================== */
+footer {
+    background: #141414;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-top: 50px; 
+    text-align: center;
+    color: white;
+  }
+  
+  
+  /* social icon */
+  .social-icon {
+    padding: 0;
+    margin: 0;
+  }
+  .social-icon li {
+    list-style: none;
+    display: inline-block;
+  }
+  .social-icon li a {
+    border-radius: 100px;
+    border: 1px solid transparent;
+    color: #909090;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    line-height: 48px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+    padding: 0px;
+    margin-top: 14px;
+    margin-right: 8px;
+    margin-left: 8px;
+    position: relative;
+    top: 0px;
+  }
+  .social-icon li a:hover {
+    background: #ffffff;
+  }

@@ -16,7 +16,7 @@ export class UsersService {
   private isAdmin = false;
   private isFirm = false;
   private isMember = false;
-  private isAuthenticated = false;
+  isAuthenticated = false;
 
   private decryptToken: any;
 
