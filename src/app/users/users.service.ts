@@ -34,6 +34,7 @@ export class UsersService {
   decodeToken(token) {
     return jwtDecode(token);
   }
+  
   login(data) {
     return this._http.post(this.ROUTE + '/login', data)
       .map(res => res.json());

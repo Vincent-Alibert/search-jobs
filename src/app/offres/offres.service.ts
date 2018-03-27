@@ -52,4 +52,15 @@ export class OffresService {
     return this._http.get(this.ROUTE + `/candidatures/${idUser}`)
       .map(res => res.json());
   }
+
+  selectOffre(idUser: number, idOffre: number) {
+    return this._http.get(this.ROUTE + `/candidatures/${idUser}/select/${idOffre}`)
+      .map(res => res.json());
+  }
+
+  unSelectOffre(idUser: number, idOffre: number) {
+    return this._http.get(this.ROUTE + `/candidatures/${idUser}/unselect/${idOffre}`)
+      .map(res => res.json());
+  }
+
 }

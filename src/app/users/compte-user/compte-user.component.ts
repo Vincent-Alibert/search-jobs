@@ -12,24 +12,46 @@ import { OffresService } from '../../offres/offres.service';
 })
 export class CompteUserComponent implements OnInit {
 
-@Input() data : User;
+  @Input() data: User;
 
   currentUser: User;
-  offres : Offre[];
+  offres: Offre[];
 
   constructor(private usersService: UsersService, private offreService: OffresService) { }
 
   ngOnInit() {
     this.currentUser = this.data;
     this.offreService.getOffreByCandidatureId(this.currentUser.idUser).subscribe(
-      data => {        
+      data => {
         if (data.status === "success") {
           this.offres = data.candidature
-        } 
+        }
       },
       error => console.log('error', error)
     )
-    console.log('end',this.offres);
   }
-  
+  selection(event) {
+    if (event.target.checked) {
+      this.offreService.selectOffre(this.currentUser.idUser, event.target.id).subscribe(
+        data => {
+          console.log('data', data);
+        },
+        error => {
+          console.log('error', error);
+
+        }
+      )
+    } else {
+      this.offreService.unSelectOffre(this.currentUser.idUser, event.target.id).subscribe(
+        data => {
+          console.log('data', data);
+        },
+        error => {
+          console.log('error', error);
+
+        }
+      )
+    }
+  }
+
 }

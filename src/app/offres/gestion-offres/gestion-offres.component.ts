@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OffresService } from '../offres.service';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionOffresComponent implements OnInit {
 
-  constructor() { }
+  constructor(private offresService: OffresService) { }
 
   ngOnInit() {
+    
   }
 
 }

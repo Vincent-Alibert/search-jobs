@@ -1,5 +1,19 @@
-<p *ngFor="let offre of offres">
+<div class="container">
+    <div class="row">
+        <div class="col-4" *ngFor="let offre of offres | paginate: { itemsPerPage: 9, currentPage: p }">
+            <a [routerLink]="['/offres/details/', offre.idOffre]">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{offre.titreOffre}}</h4>
+                        <p class="card-text">{{offre.introduction}}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Publiée le {{offre.datePublication | date:'fullDate':'':'fr' }}</small>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-{{offre.titreOffre}}
-
-</p>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

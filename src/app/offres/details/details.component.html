@@ -8,16 +8,20 @@
     </div>
   </div>
   <div class="row" *ngIf="userService.userIsAuthenticated()">
-    <div class="col-12"  [innerHTML]="offreDetails.description"></div>
+    <div class="col-12" [innerHTML]="offreDetails.description"></div>
   </div>
   <div class="row" *ngIf="!userService.userIsAuthenticated()">
     <div class="col-12" [innerHTML]="offreDetails.introduction"></div>
   </div>
-  <div class="row">
-    <div class="col-12" *ngIf="userService.userIsAuthenticated()">
+  <div class="row" *ngIf="userService.userIsAuthenticated()">
+    <div class="col-12">
       <h3>Détails :</h3>
-      <p>Salaire proposé : <span>{{offreDetails.salaireOffre}}€</span></p>
-      <p>Début du poste : <span>{{offreDetails.dateDebutPoste}}</span></p>
+      <p>Salaire proposé :
+        <span>{{offreDetails.salaireOffre}}€</span>
+      </p>
+      <p>Début du poste :
+        <span>{{offreDetails.dateDebutPoste}}</span>
+      </p>
       <p>Adresse : {{offreDetails.rueOffre}} {{offreDetails.codePostalOffre}} {{offreDetails.villeOffre}}</p>
     </div>
     <div class="col-12">
@@ -26,5 +30,11 @@
       </agm-map>
     </div>
   </div>
+  <div class="row" *ngIf="!userService.userIsAuthenticated()">
+    <div class="col-12">
+      <h3>Informations</h3>
+      <p>Pour plus de renseignement sur cette offre d'emploi vous devez vous connecter. Rendez-vous sur la page
+        <a class="nav-link" routerLink="/connection">connexion</a>.</p>
+    </div>
+  </div>
 </div>
-

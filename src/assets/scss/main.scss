@@ -7,3 +7,10 @@
 .container {
     margin-top: 10px;
 }
+a{
+    color: black;
+    transition-duration: 0.2s;
+    &:hover{
+        text-decoration: none;
+    }
+}
