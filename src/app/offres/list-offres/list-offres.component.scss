@@ -3,4 +3,13 @@
 }
 .card {
     height : 100%;
+    label{
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    input{
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+    }
 }

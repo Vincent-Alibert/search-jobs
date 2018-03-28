@@ -1,17 +1,21 @@
 <div class="container">
     <div class="row">
         <div class="col-4" *ngFor="let offre of offres | paginate: { itemsPerPage: 9, currentPage: p }">
-            <a [routerLink]="['/offres/details/', offre.idOffre]">
-                <div class="card">
-                    <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    <a [routerLink]="['/offres/details/', offre.idOffre]">
                         <h4 class="card-title">{{offre.titreOffre}}</h4>
                         <p class="card-text">{{offre.introduction}}</p>
-                        <p class="card-text">
-                            <small class="text-muted">Publiée le {{offre.datePublication | date:'fullDate':'':'fr' }}</small>
-                        </p>
+                    </a>
+                    <p class="card-text">
+                        <small class="text-muted">Publiée le {{offre.datePublication | date:'fullDate':'':'fr' }}</small>
+                    </p>
+                    <div *ngIf="userService.userIsMember()">
+                       <label>Sélectionner l'offre : </label> <input type="checkbox" name="selectionne" id="{{offre.idOffre}}" (change)="selection($event)" />
                     </div>
                 </div>
-            </a>
+
+            </div>
         </div>
 
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
