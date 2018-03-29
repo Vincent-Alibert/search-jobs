@@ -19,7 +19,7 @@
   </div>
 
   <div *ngIf="userService.userIsFirm()" class="row">
-    <vawec-compte-firm class="col-12"></vawec-compte-firm>
+    <vawec-compte-firm [data]="currentUser" class="col-12"></vawec-compte-firm>
   </div>
 
 </div>

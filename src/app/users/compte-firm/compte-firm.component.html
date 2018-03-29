@@ -1,5 +1,47 @@
 <div class="row">
-  <div class="col-12">
-    <p>Retrouvez ci-dessous la liste de vos offres d'emplois :</p>
+  <div class="col-12 col-lg-2">
+    <div class="row">
+      <a [routerLink]="['/compte/details/', currentUser.idUser]">
+        <button type="button" class="btn btn-info">
+          Voir votre profil
+        </button>
+      </a>
+      <a [routerLink]="['/offres/add']">
+        <button type="button" class="btn btn-info">
+          Ajouter une offre
+        </button>
+      </a>
+    </div>
   </div>
+  <div class="col-12 col-lg-10" *ngIf="offres">
+    <h2>Stat</h2>
+    <p>Vous avez actuellement {{offres.length}} offre(s) d'emploi sur le site</p> 
+    <div class="row" *ngIf="offres.length > 0">
+      <h2>Retrouvez ci-dessous la liste de vos offres d'emplois :</h2>
+      <div class="row">
+        <div class="col-4" *ngFor="let offre of offres; let i=index" #show>
+          <div class="card">
+            <div class="card-body">
+              <a [routerLink]="['/offres/details/', offre.idOffre]">
+                <h4 class="card-title">{{offre.titreOffre}}</h4>
+                <p class="card-text">{{offre.introduction}}</p>
+              </a>
+              <p class="card-text">
+                <small class="text-muted">Publiée le {{offre.datePublication | date:'fullDate':'':'fr' }}</small>
+              </p>
+              <button *ngIf="!offre.alertDelete"  class='btn btn-secondary btn-sm' (click)="offre.alertDelete = true">Supprimé</button>
+              <div *ngIf="offre.alertDelete" class="alert alert-danger" role="alert">
+                  {{alerteMessage}}
+              </div>
+              <div *ngIf="offre.alertDelete" class="offre-choose">
+                  <button class='btn btn-secondary btn-sm' (click)="offre.alertDelete = false">non</button>
+                  <button class='btn btn-danger btn-sm' (click)="valideDelete(offre.idOffre)">oui</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

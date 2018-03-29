@@ -24,13 +24,13 @@ export class OffresService {
       .map(res => res.json());
   }
 
-  /**
-   * Récupère les offres par Id de l'entreprise
-   * @param id 
+   /**
+   * Récupère les offres par l'id de l'utilisateur
+   * @param idUser 
    */
-  getOffresSendById(id: number) {
-    return this._http.get(this.ROUTE + `/offres/send/${id}`)
-      .do(res => console.log(res));
+  getOffreByIdUser(idUser: number) {
+    return this._http.get(this.ROUTE + `/offres/user/${idUser}`)
+      .map(res => res.json());
   }
 
   /**
@@ -41,6 +41,16 @@ export class OffresService {
   addOffre(FormData, token) {
     const requestOptions = this.userService.addAuthHeader(token);
     return this._http.post(this.ROUTE + '/offres/add', FormData, requestOptions)
+      .map(res => res.json());
+  }
+
+  /**
+   * 
+   * @param idOffre 
+   * 
+   */
+  deleteOffre(idOffre) {
+    return this._http.post(this.ROUTE + '/offres/delete', idOffre)
       .map(res => res.json());
   }
 
