@@ -49,8 +49,9 @@ export class OffresService {
    * @param idOffre 
    * 
    */
-  deleteOffre(idOffre) {
-    return this._http.post(this.ROUTE + '/offres/delete', idOffre)
+  deleteOffre(idOffre: number) {
+    const data = {idOffre};
+    return this._http.post(this.ROUTE + '/offres/delete', data)
       .map(res => res.json());
   }
 

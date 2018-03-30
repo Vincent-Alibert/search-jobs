@@ -38,10 +38,11 @@ export class CompteFirmComponent implements OnInit {
   valideDelete(idOffre: number) {
     this.offreService.deleteOffre(idOffre).subscribe(
       data => {
-        if (data.status === "success") {
-          // this.offres = this.offres.filter(
-          //   (offre) => { return offre.idOffre !== id }
-          // );
+        console.log('data', data);
+        if (data.result.status === "success") {
+          this.offres = this.offres.filter(
+            (offre) => { return offre.idOffre !== idOffre }
+          );
         }
       }
     )
