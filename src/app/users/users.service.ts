@@ -92,7 +92,6 @@ export class UsersService {
   }
 
 
-
   userIsLoggedIn() {
     return !!localStorage.getItem('data');
   }

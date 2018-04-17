@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row">
     <h1 class="col-12">Inscription</h1>
-    <p class="col-12"><em>Tous les champs sont obligatoires</em></p>
+    <p class="col-12">
+      <em>Tous les champs sont obligatoires</em>
+      <em *ngIf="errQuery" class="invalid-feedback">Une erreur est survenue. Veuillez nous excuser et réessayez le plus tard. </em>
+    </p>
     <div *ngIf="inscriptionIsOk" class="col-12 text-center">
-      <p class="valid-feedback">Félicitation !! Votre inscription a bien été prise en compte. Rendez-sur la page <a routerLink="/connection">connexion</a> afin d'accéder à votre compte.</p>
+      <p class="valid-feedback">Félicitation !! Votre inscription a bien été prise en compte. Rendez-sur la page
+        <a routerLink="/connection">connexion</a> afin d'accéder à votre compte.</p>
     </div>
   </div>
 </div>
@@ -12,15 +16,13 @@
     <form class="col-12" [formGroup]="formInscription" (ngSubmit)='addUser(formInscription.value)' novalidate>
 
       <div class="row" formGroupName="user">
-
-        <div class="col-6">
-
+        <div class="col-12 col-md-6">
           <div class="form-group row">
             <label for="nomUser" class="col-2 col-form-label">Nom</label>
             <div class="col-10">
               <input class="form-control" id="nomUser" formControlName="nomUser">
-              <div *ngIf="(formInscription.get('user.nomUser').pristine || formInscription.get('user.nomUser').dirty ) && formInscription.get('user.nomUser').errors && formInscription.get('user.nomUser').touched" 
-              class="invalid-feedback">
+              <div *ngIf="(formInscription.get('user.nomUser').pristine || formInscription.get('user.nomUser').dirty ) && formInscription.get('user.nomUser').errors && formInscription.get('user.nomUser').touched"
+                class="invalid-feedback">
                 Merci de rentrer votre nom.
               </div>
             </div>
@@ -30,7 +32,7 @@
             <label for="surnameUser" class="col-2 col-form-label">Prénom</label>
             <div class="col-10">
               <input id="surnameUser" class="form-control" formControlName="prenomUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.prenomUser').pristine ||formInscription.get('user.prenomUser').dirty) && formInscription.get('user.prenomUser').errors && formInscription.get('user.prenomUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.prenomUser').pristine ||formInscription.get('user.prenomUser').dirty) && formInscription.get('user.prenomUser').errors && formInscription.get('user.prenomUser').touched">
                 Merci de rentrer votre prénom.
               </div>
             </div>
@@ -40,8 +42,11 @@
             <label for="mailUser" class="col-2 col-form-label">Email</label>
             <div class="col-10">
               <input type="email" class="form-control" id="mailUser" formControlName="mailUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.mailUser').pristine || formInscription.get('user.mailUser').dirty) && formInscription.get('user.mailUser').errors && formInscription.get('user.mailUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.mailUser').pristine || formInscription.get('user.mailUser').dirty) && formInscription.get('user.mailUser').errors && formInscription.get('user.mailUser').touched">
                 Merci de rentrer un email valide.
+              </div>
+              <div class="invalid-feedback" *ngIf="errMail">
+                Ce mail est déjà utilisé, veuillez en choisir un autre afin de créer un compte.
               </div>
             </div>
           </div>
@@ -50,25 +55,30 @@
             <label for="passwordUser" class="col-3 col-form-label">Mot de passe</label>
             <div class="col-9">
               <input type="password" class="form-control" id="passwordUser" formControlName="passwordUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordUser').pristine || formInscription.get('user.passwordUser').dirty) && formInscription.get('user.passwordUser').errors && formInscription.get('user.passwordUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordUser').pristine || formInscription.get('user.passwordUser').dirty) && formInscription.get('user.passwordUser').errors && formInscription.get('user.passwordUser').touched">
                 Ce champ est obligatoire.
               </div>
-              <div class="invalid-feedback" *ngIf="!samePassword" >
+              <div class="invalid-feedback" *ngIf="!samePassword">
                 Les mots de passe ne sont pas identiques. Veuillez les resaisir et recommencer svp.
               </div>
             </div>
           </div>
 
-        </div>
-        <!-- fin col-6 -->
-
-        <div class="col-6">
+          <div class="form-group row">
+            <label for="passwordVerify" class="col-5 col-form-label">Mot de passe vérification</label>
+            <div class="col-7">
+              <input type="password" class="form-control" id="passwordVerify" formControlName="passwordVerify">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordVerify').pristine || formInscription.get('user.passwordVerify').dirty) && formInscription.get('user.passwordVerify').errors && formInscription.get('user.passwordVerify').touched">
+                Ce champ est obligatoire.
+              </div>
+            </div>
+          </div>
 
           <div class="form-group row">
             <label for="rueUser" class="col-2 col-form-label">Rue</label>
             <div class="col-10">
               <input class="form-control" id="rueUser" formControlName="rueUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.rueUser').pristine || formInscription.get('user.rueUser').dirty) && formInscription.get('user.rueUser').errors && formInscription.get('user.rueUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.rueUser').pristine || formInscription.get('user.rueUser').dirty) && formInscription.get('user.rueUser').errors && formInscription.get('user.rueUser').touched">
                 Merci de rentrer votre rue.
               </div>
             </div>
@@ -78,7 +88,7 @@
             <label for="codePostalUser" class="col-3 col-form-label">Code postal</label>
             <div class="col-9">
               <input id="codePostalUser" class="form-control" formControlName="codePostalUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.codePostalUser').pristine || formInscription.get('user.codePostalUser').dirty) && formInscription.get('user.codePostalUser').errors && formInscription.get('user.codePostalUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.codePostalUser').pristine || formInscription.get('user.codePostalUser').dirty) && formInscription.get('user.codePostalUser').errors && formInscription.get('user.codePostalUser').touched">
                 Merci de rentrer votre code postal.
               </div>
             </div>
@@ -88,22 +98,61 @@
             <label for="villeUser" class="col-2 col-form-label">Ville</label>
             <div class="col-10">
               <input type="email" class="form-control" id="villeUser" formControlName="villeUser">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.villeUser').pristine || formInscription.get('user.villeUser').dirty) && formInscription.get('user.villeUser').errors && formInscription.get('user.villeUser').touched" >
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.villeUser').pristine || formInscription.get('user.villeUser').dirty) && formInscription.get('user.villeUser').errors && formInscription.get('user.villeUser').touched">
                 Merci de rentrer votre ville.
               </div>
             </div>
           </div>
 
+        </div>
+        <!-- fin col-6 -->
+
+        <div class="col-12 col-md-6">
           <div class="form-group row">
-            <label for="passwordVerify" class="col-5 col-form-label">Mot de passe vérification</label>
-            <div class="col-7">
-              <input type="password" class="form-control" id="passwordVerify" formControlName="passwordVerify">
-              <div class="invalid-feedback" *ngIf="(formInscription.get('user.passwordVerify').pristine || formInscription.get('user.passwordVerify').dirty) && formInscription.get('user.passwordVerify').errors && formInscription.get('user.passwordVerify').touched" >
-                Ce champ est obligatoire.
+            <label for="photoUser" class="col-12 col-form-label">Photo de profil (Format 200x200, jpeg, png uniquement) : </label>
+            <input type="file" class="col-12 form-control-file" id="photoUser" formControlName="photoUser" ng2FileSelect [uploader]="uploaderPhoto"
+              (change)="onFileChange($event)" />
+            <div class="col-12">
+              <div class="progress w-100">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': getProgress(uploaderPhoto.progress) + '%' }" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100">{{getProgress(uploaderPhoto.progress) + '%'}}</div>
               </div>
-              
+            </div>
+            <div class="invalid-feedback col-12" *ngIf="profilError && formInscription.get('user.photoUser').touched">
+              Veuillez joindre photo de profil svp.
             </div>
           </div>
+
+          <div class="form-group row">
+            <label for="imageUser" class="col-12 col-form-label">Image de fond (Format 1920x400, jpeg, png uniquement) : </label>
+            <input type="file" class="col-12 form-control-file" id="imageUser" formControlName="imageUser" ng2FileSelect [uploader]="uploaderImg"
+              (change)="onFileChange($event)" />
+            <div class="col-12">
+              <div class="progress w-100">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': getProgress(uploaderImg.progress) + '%' }" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100">{{getProgress(uploaderImg.progress) + '%'}}</div>
+              </div>
+            </div>
+            <div class="invalid-feedback col-12" *ngIf="bgError && formInscription.get('user.imageUser').touched">
+              Veuillez joindre une image de fond.
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="cvUser" class="col-12 col-form-label">Votre Cv (Format pdf, jpeg, png uniquement) : </label>
+            <input type="file" class="col-12 form-control-file" id="cvUser" formControlName="cvUser" ng2FileSelect [uploader]="uploaderCv"
+              (change)="onFileChange($event)" />
+            <div class="col-12">
+              <div class="progress w-100">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': getProgress(uploaderCv.progress) + '%' }" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100">{{getProgress(uploaderCv.progress) + '%'}}</div>
+              </div>
+            </div>
+            <div class="invalid-feedback col-12" *ngIf="fileCvError && formInscription.get('user.cvUser').touched">
+              Veuillez joindre votre cv.
+            </div>
+          </div>
+
 
         </div>
         <!-- fin col-6 -->
@@ -118,46 +167,47 @@
             <label class="form-check-label" for="inlineRadio2">non</label>
           </div>
         </div>
-        
-          <div *ngIf="formInscription.get('user.entreprise').value == 1" class="col-6">
 
-            <div class="form-group row">
-              <label for="nomEnt" class="col-4 col-form-label">Nom de l'entreprise</label>
-              <div class="col-8">
-                <input class="form-control" id="nomEnt" formControlName="nomEnt">
-                <div class="invalid-feedback" *ngIf="(formInscription.get('user.nomEnt').pristine || formInscription.get('user.nomEnt').dirty) && formInscription.get('user.nomEnt').errors && formInscription.get('user.nomEnt').touched" >
-                  Merci de rentrer le nom de votre entreprise.
-                </div>
+        <div *ngIf="formInscription.get('user.entreprise').value == 1" class="col-6">
+
+          <div class="form-group row">
+            <label for="nomEnt" class="col-4 col-form-label">Nom de l'entreprise</label>
+            <div class="col-8">
+              <input class="form-control" id="nomEnt" formControlName="nomEnt">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.nomEnt').pristine || formInscription.get('user.nomEnt').dirty) && formInscription.get('user.nomEnt').errors && formInscription.get('user.nomEnt').touched">
+                Merci de rentrer le nom de votre entreprise.
               </div>
             </div>
-
-            <p>Coordonnée géographique :</p>
-
-            <div class="form-group row">
-              <label for="latitudeEnt" class="col-3 col-form-label">Latitude</label>
-              <div class="col-9">
-                <input type="text" id="latitudeEnt" class="form-control" formControlName="latitudeEnt">
-                <div class="invalid-feedback" *ngIf="(formInscription.get('user.latitudeEnt').pristine || formInscription.get('user.latitudeEnt').dirty) && formInscription.get('user.latitudeEnt').errors && formInscription.get('user.latitudeEnt').touched" >
-                  Merci de rentrer la latitude de votre entreprise.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="longitudeEnt" class="col-3 col-form-label">Longitude</label>
-              <div class="col-9">
-                <input type="text" class="form-control" id="longitudeEnt" formControlName="longitudeEnt">
-                <div class="invalid-feedback" *ngIf="(formInscription.get('user.longitudeEnt').pristine || formInscription.get('user.longitudeEnt').dirty) && formInscription.get('user.longitudeEnt').errors && formInscription.get('user.longitudeEnt').touched" >
-                  Merci de rentrer la latitude de votre entreprise.
-                </div>
-              </div>
-            </div>
-
           </div>
 
+          <p>Coordonnée géographique :</p>
+
+          <div class="form-group row">
+            <label for="latitudeEnt" class="col-3 col-form-label">Latitude</label>
+            <div class="col-9">
+              <input type="text" id="latitudeEnt" class="form-control" formControlName="latitudeEnt">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.latitudeEnt').pristine || formInscription.get('user.latitudeEnt').dirty) && formInscription.get('user.latitudeEnt').errors && formInscription.get('user.latitudeEnt').touched">
+                Merci de rentrer la latitude de votre entreprise.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="longitudeEnt" class="col-3 col-form-label">Longitude</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="longitudeEnt" formControlName="longitudeEnt">
+              <div class="invalid-feedback" *ngIf="(formInscription.get('user.longitudeEnt').pristine || formInscription.get('user.longitudeEnt').dirty) && formInscription.get('user.longitudeEnt').errors && formInscription.get('user.longitudeEnt').touched">
+                Merci de rentrer la latitude de votre entreprise.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      <button type="submit" [disabled]="formInscription.invalid" class="btn btn-primary">S'inscrire</button>
+      <button type="submit" [disabled]="formInscription.invalid || fileCvError || profilError || bgError" class="btn btn-primary">S'inscrire</button>
       <!-- fin formGroup user-->
     </form>
   </div>
 </div>
+

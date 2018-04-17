@@ -59,6 +59,14 @@ export class OffresService {
    * Récupère les candidatures par l'id de l'utilisateur
    * @param idUser 
    */
+  getCandidatureByIdFirm(idUser: number) {
+    return this._http.get(this.ROUTE + `/candidatures/firm/${idUser}`)
+      .map(res => res.json());
+  }
+  /**
+   * Récupère les candidatures par l'id de l'utilisateur
+   * @param idUser 
+   */
   getOffreByCandidatureId(idUser: number) {
     return this._http.get(this.ROUTE + `/candidatures/${idUser}`)
       .map(res => res.json());

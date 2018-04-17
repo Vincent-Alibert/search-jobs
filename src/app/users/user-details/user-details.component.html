@@ -15,7 +15,7 @@
         <p *ngIf="userDetails.admistrateur">Statut : Administrateur</p>
         <p *ngIf="userDetails.entreprise">Statut : Entreprise</p>
         <p *ngIf="!userDetails.admistrateur && !userDetails.entreprise">Statut : Demandeur</p>
-        <p>Inscrit depuis : {{userDetails.dateInscription}}</p>
+        <p>Inscrit depuis le : {{userDetails.dateInscription | date:'fullDate':'':'fr'}}</p>
         <p>Adresse : {{userDetails.rueUser}} {{userDetails.codePostalUser}} {{userDetails.villeUser}}</p>
       </div>
     </div>

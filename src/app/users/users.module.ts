@@ -16,6 +16,7 @@ import { GestionUserComponent } from './gestion-user/gestion-user.component';
 import { GestionOffresComponent } from '../offres/gestion-offres/gestion-offres.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserModificationComponent } from './user-modification/user-modification.component';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { UserModificationComponent } from './user-modification/user-modification
     GestionUserComponent,
     GestionOffresComponent,
     UserDetailsComponent,
-    UserModificationComponent
+    UserModificationComponent,
+    FileSelectDirective
   ],
   exports: [
     AuthentificationComponent,

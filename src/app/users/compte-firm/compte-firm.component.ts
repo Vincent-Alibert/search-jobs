@@ -15,6 +15,9 @@ export class CompteFirmComponent implements OnInit {
 
   currentUser: User;
   offres: any[];
+  candidatures: any[];
+  showCandidature = false;
+  showMyOffres = true;
   alerteMessage = "Êtes-vous sûr de vouloir supprimer cette offre ?";
 
   constructor(private usersService: UsersService, private offreService: OffresService) { }
@@ -33,6 +36,15 @@ export class CompteFirmComponent implements OnInit {
       },
       error => console.log('error', error)
     )
+    this.offreService.getCandidatureByIdFirm(this.currentUser.idUser).subscribe(
+      data => {
+        console.log('data', data);
+        if (data.status === "success") {
+          this.candidatures = data.candidature;
+        }
+      },
+      error => console.log('errorCandidature', error)
+    )
   }
 
   valideDelete(idOffre: number) {
@@ -47,5 +59,41 @@ export class CompteFirmComponent implements OnInit {
       }
     )
   }
+  showingCandidature() {
+    this.showCandidature = true;
+    this.showMyOffres = false;
+    this.offreService.getCandidatureByIdFirm(this.currentUser.idUser).subscribe(
+      data => {
+        if (data.status === "success") {
+          this.candidatures = data.candidature;
+        }
+      },
+      error => console.log('error', error)
+    )
+  }
+  showingMyOffre() {
+    this.showCandidature = false;
+    this.showMyOffres = true;
+  }
 
+  count(id: number) {
+    console.log('id', id);
+
+    var current = null;
+    var number = 0;
+    for (let index = 0; index < this.candidatures.length; index++) {
+      let element = this.candidatures[index];
+      console.log('element.idOffre',element.idOffre);
+      console.log('number', number);
+      
+      if (element.idOffre == id) {
+        number++;
+        console.log('number++', number);
+      }
+
+    }
+    console.log('****************************');
+    
+    return number;
+  }
 }

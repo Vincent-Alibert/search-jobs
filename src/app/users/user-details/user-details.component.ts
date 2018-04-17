@@ -23,7 +23,5 @@ export class UserDetailsComponent implements OnInit {
       },
       error => console.error('erreur', error)
     );
-
   }
-
 }
