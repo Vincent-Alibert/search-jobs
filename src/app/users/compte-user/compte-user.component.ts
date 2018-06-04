@@ -44,12 +44,10 @@ export class CompteUserComponent implements OnInit {
     } else {
       this.offreService.unSelectOffre(this.currentUser.idUser, event.target.id).subscribe(
         data => {
-          console.log('data', data);
           this.offres = this.offres.filter((offre) => { return offre.idOffre !== event.target.id })
         },
         error => {
           console.log('error', error);
-
         }
       )
     }

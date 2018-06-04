@@ -24,10 +24,10 @@ export class OffresService {
       .map(res => res.json());
   }
 
-   /**
-   * Récupère les offres par l'id de l'utilisateur
-   * @param idUser 
-   */
+  /**
+  * Récupère les offres par l'id de l'utilisateur
+  * @param idUser 
+  */
   getOffreByIdUser(idUser: number) {
     return this._http.get(this.ROUTE + `/offres/user/${idUser}`)
       .map(res => res.json());
@@ -46,11 +46,19 @@ export class OffresService {
 
   /**
    * 
+   */
+  searchOffre(criteria) {
+    return this._http.get(this.ROUTE + `/offres/search/${criteria.term}/${criteria.place}`)
+      .map(res => res.json());
+  }
+
+  /**
+   * 
    * @param idOffre 
    * 
    */
   deleteOffre(idOffre: number) {
-    const data = {idOffre};
+    const data = { idOffre };
     return this._http.post(this.ROUTE + '/offres/delete', data)
       .map(res => res.json());
   }

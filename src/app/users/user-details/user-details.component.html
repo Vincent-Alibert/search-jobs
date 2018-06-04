@@ -1,22 +1,23 @@
 <div id="profil" *ngIf="userDetails">
   <div id="header" class="text-center" [ngStyle]="{'background': 'url('+ userDetails.imageUser +')'}">
-    <h1>Profil de {{userDetails.prenomUser}}</h1>
+    
   </div>
   <div class="container">
     <div class="row">
       <div class="col-3">
         <div class="logo">
-          <img src="{{userDetails.photoUser}}" alt="Vawec">
+          <img class="img-fluid" src="{{userDetails.photoUser}}" alt="Vawec">
         </div>
       </div>
       <div class="col-9">
-        <h2>{{userDetails.prenomUser}} {{userDetails.nomUser}}</h2>
-        <p>{{userDetails.mailUser}}</p>
+        <h1>{{userDetails.prenomUser}} {{userDetails.nomUser}}</h1>
+        <p *ngIf="userService.userIsFirm() || userService.currentUser.idUser == userDetails.idUser || userService.userIsAdmin()">{{userDetails.mailUser}}</p>
         <p *ngIf="userDetails.admistrateur">Statut : Administrateur</p>
         <p *ngIf="userDetails.entreprise">Statut : Entreprise</p>
         <p *ngIf="!userDetails.admistrateur && !userDetails.entreprise">Statut : Demandeur</p>
         <p>Inscrit depuis le : {{userDetails.dateInscription | date:'fullDate':'':'fr'}}</p>
-        <p>Adresse : {{userDetails.rueUser}} {{userDetails.codePostalUser}} {{userDetails.villeUser}}</p>
+        <p *ngIf="userService.userIsFirm() || userService.currentUser.idUser == userDetails.idUser || userService.userIsAdmin()">Adresse : {{userDetails.rueUser}} {{userDetails.codePostalUser}} {{userDetails.villeUser}}</p>
+        <a *ngIf="userService.userIsFirm() || userService.currentUser.idUser == userDetails.idUser || userService.userIsAdmin()"  class="btn btn-primary" href="{{userDetails.cvUser}}" target="_blank">Voir le Cv</a>
       </div>
     </div>
   </div>

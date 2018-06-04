@@ -20,10 +20,12 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-10" *ngIf="offres && showMyOffres">
+  <div class="col-12 col-lg-10">
     <h2>Stat</h2>
     <p>Vous avez actuellement {{offres.length}} offre(s) d'emploi sur le site</p>
-    <div class="row" *ngIf="offres.length > 0">
+  </div>
+  <div class="col-12 col-lg-10">
+    <div class="row" *ngIf="offres && showMyOffres && offres.length > 0">
       <h2>Retrouvez ci-dessous la liste de vos offres d'emplois :</h2>
       <div class="row">
         <div class="col-4" *ngFor="let offre of offres; let i=index" #show>
@@ -60,9 +62,9 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-            <div class="col-1">
-              <b>N°</b>
-            </div>
+          <div class="col-1">
+            <b>N°</b>
+          </div>
           <div class="col-2">
             <b>Titre de l'offre</b>
           </div>
@@ -79,7 +81,9 @@
         </div>
         <div class="row user" *ngFor="let candidature of candidatures ">
           <div class="col-1">{{candidature.idOffre}}</div>
-          <div class="col-2"><a class="link" [routerLink]="['/offres/details/', candidature.idOffre]">{{candidature.titreOffre | slice:0:20}}...</a></div>
+          <div class="col-2">
+            <a class="link" [routerLink]="['/offres/details/', candidature.idOffre]">{{candidature.titreOffre | slice:0:20}}...</a>
+          </div>
           <div class="col-3">{{candidature.nomUser}}</div>
           <div class="col-2">{{candidature.prenomUser}}</div>
           <div *ngIf="candidature.mailUser.length > 20" class="col-3 mail">{{candidature.mailUser | slice:0:17}}...</div>

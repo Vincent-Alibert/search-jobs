@@ -21,7 +21,7 @@ export class AddOffreComponent implements OnInit {
     this.formAddOffre = this.formBuilder.group({
       offre: this.formBuilder.group({
         titreOffre: ['', Validators.required],
-        dateDebutPoste: ['', [Validators.required, Validators.pattern('(asap)|([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))')]],
+        dateDebutPoste: ['', [Validators.required, Validators.pattern('^(asap)|((0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4})')]],
         introduction: ['', Validators.required],
         description: ['', Validators.required],
         latitude: ['', [Validators.required, Validators.pattern('^[+-]?[0-9]+(\.[0-9]+)?')]],

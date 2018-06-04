@@ -1,3 +1,49 @@
-<p>
-  search-offres works!
-</p>
+<div class="container">
+  <div class="row">
+    <form #searchForm="ngForm" class="w-100" (ngSubmit)="searchJobs(searchForm.value)">
+      <div class="row">
+        <div class="col-5">
+          <input type="text" ngModel name="term" class="form-control" id="term" placeholder="Angular, React, Développeur ..." />
+        </div>
+        <div class="col-5">
+          <input type="text" ngModel name="term" class="form-control" id="place" placeholder="Toulouse, Bordeaux, Paris" />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-info" type="submit">Chercher</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="searchResult" class="row">
+    <div *ngIf="number > 1" class="col-12">
+      <p>{{number}} d'offres trouvées</p>
+    </div>
+    <div *ngIf="number == 1" class="col-12">
+        <p>{{number}} offre trouvée</p>
+      </div>
+    <div *ngIf="number == 0" class="col-12">
+        <p>Nous n'avons pas trouvé d'offre.</p>
+      </div>
+    <div class="col-4" *ngFor="let offre of offres | paginate: { itemsPerPage: 9, currentPage: p }">
+      <div class="card">
+        <div class="card-body">
+          <a [routerLink]="['/offres/details/', offre.idOffre]">
+            <h4 class="card-title">{{offre.titreOffre}}</h4>
+            <p class="card-text">{{offre.introduction}}</p>
+          </a>
+          <p class="card-text">
+            <small class="text-muted">Publiée le {{offre.datePublication | date:'fullDate':'':'fr' }}</small>
+          </p>
+          <div *ngIf="userService.userIsMember()">
+            <label>Sélectionner l'offre : </label>
+            <input type="checkbox" name="selectionne" id="{{offre.idOffre}}" (change)="selection($event)" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div *ngIf="offres.length > 9" class="col-12 text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

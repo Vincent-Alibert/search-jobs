@@ -14,7 +14,7 @@ export class CompteFirmComponent implements OnInit {
   @Input() data: User;
 
   currentUser: User;
-  offres: any[];
+  offres: any = [];
   candidatures: any[];
   showCandidature = false;
   showMyOffres = true;
@@ -38,7 +38,6 @@ export class CompteFirmComponent implements OnInit {
     )
     this.offreService.getCandidatureByIdFirm(this.currentUser.idUser).subscribe(
       data => {
-        console.log('data', data);
         if (data.status === "success") {
           this.candidatures = data.candidature;
         }
@@ -50,7 +49,6 @@ export class CompteFirmComponent implements OnInit {
   valideDelete(idOffre: number) {
     this.offreService.deleteOffre(idOffre).subscribe(
       data => {
-        console.log('data', data);
         if (data.result.status === "success") {
           this.offres = this.offres.filter(
             (offre) => { return offre.idOffre !== idOffre }
@@ -77,22 +75,16 @@ export class CompteFirmComponent implements OnInit {
   }
 
   count(id: number) {
-    console.log('id', id);
-
     var current = null;
     var number = 0;
     for (let index = 0; index < this.candidatures.length; index++) {
       let element = this.candidatures[index];
-      console.log('element.idOffre',element.idOffre);
-      console.log('number', number);
-      
       if (element.idOffre == id) {
         number++;
-        console.log('number++', number);
       }
 
     }
-    console.log('****************************');
+    
     
     return number;
   }

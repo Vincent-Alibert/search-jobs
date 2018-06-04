@@ -41,7 +41,7 @@
           <div class="form-group row">
             <label for="dateDebutPoste" class="col-4 col-form-label">Date de début de l'offre</label>
             <div class="col-8">
-              <input id="dateDebutPoste" placeholder="asap ou aaaa/mm/dd" class="form-control" formControlName="dateDebutPoste">
+              <input id="dateDebutPoste" placeholder="asap ou dd/mm/aaaa" class="form-control" formControlName="dateDebutPoste">
               <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.dateDebutPoste').pristine ||formAddOffre.get('offre.dateDebutPoste').dirty) && formAddOffre.get('offre.dateDebutPoste').errors && formAddOffre.get('offre.dateDebutPoste').touched">
                 Merci de rentrer la date de début de l'offre.
               </div>
@@ -68,7 +68,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="salaireOffre" class="col-4 col-form-label">Salaire proposé</label>
+            <label for="salaireOffre" class="col-4 col-form-label">Salaire proposé par an</label>
             <div class="col-8">
               <input id="salaireOffre" class="form-control" formControlName="salaireOffre">
               <div class="invalid-feedback" *ngIf="(formAddOffre.get('offre.salaireOffre').pristine ||formAddOffre.get('offre.salaireOffre').dirty) && formAddOffre.get('offre.salaireOffre').errors && formAddOffre.get('offre.salaireOffre').touched">

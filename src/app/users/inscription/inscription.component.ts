@@ -133,7 +133,6 @@ export class InscriptionComponent implements OnInit {
         this.photoUser = 'http://localhost:4201/api/v1/public/uploads/photo/' + this.dateConnection + '.' + $event.target.files["0"].name;
         this.profilError = false;
         this.uploaderPhoto.queue[0].file.name = this.dateConnection + '.' + $event.target.files["0"].name;
-        console.log('this.uploaderPhoto',this.uploaderPhoto.queue[0].file.name);
         
       }
       if ($event.target.id == "imageUser") {
@@ -184,10 +183,6 @@ export class InscriptionComponent implements OnInit {
         FormData.user.photoUser = this.photoUser;
         FormData.user.imageUser = this.imageUser;
         FormData.user.cvUser = this.fileCv;
-
-console.log('formData', FormData);
-
-
         this.uploaderPhoto.uploadAll();
         this.uploaderPhoto.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
           this.attachementList.push(JSON.parse(response));
@@ -199,18 +194,12 @@ console.log('formData', FormData);
 
             this.uploaderCv.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
               this.attachementList.push(JSON.parse(response));
-
-              console.log('3eme upload');
-              console.log('this.attachementList', this.attachementList);
-
-
               this.attachementList.forEach(element => {
                 if (element.typeError == "cv") {
                   (<HTMLInputElement>document.getElementById("cvUser")).value = "";
                   this.uploaderCv.clearQueue();
                   this.fileCvError = true;
                 }
-
                 if (element.typeError == "photo") {
                   (<HTMLInputElement>document.getElementById("photoUser")).value = "";
                   this.uploaderPhoto.clearQueue();

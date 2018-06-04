@@ -8,6 +8,10 @@
       </a>
     </div>
   </div>
+  <div class="col-12 col-lg-10" *ngIf="!offres">
+    <p>Vous n'avez pas sélectionné d'offres pour le moment</p>
+    <p >Rendez-vous sur la page d'<a class="blue" routerLink="/offres">offres</a> afin de voir les offres qui pourraient vous intéresser.</p>
+  </div>
   <div class="col-12 col-lg-10" *ngIf="offres">
     <div class="row" *ngIf="offres.length > 0">
       <h2>Voici les offres que vous avez sélectionnée(s) :</h2>
@@ -22,8 +26,8 @@
               <p class="card-text">
                 <small class="text-muted">sélectionnée le {{offre.dateCandidature | date:'fullDate':'':'fr' }}</small>
               </p>
-                <input type="checkbox" checked name="selectionne" id="{{offre.idOffre}}" (change)="selection($event)">
-             </div>
+              <input type="checkbox" checked name="selectionne" id="{{offre.idOffre}}" (change)="selection($event)">
+            </div>
           </div>
         </div>
       </div>

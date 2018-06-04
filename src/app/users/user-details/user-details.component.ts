@@ -11,10 +11,12 @@ import { User } from '../class/user';
 export class UserDetailsComponent implements OnInit {
 
   userDetails: User;
+  currentUser: User;
 
   constructor(private userService: UsersService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.currentUser = this.userService.currentUser;
     const token = JSON.parse(localStorage.getItem('data'));
     const id = this.activatedRoute.snapshot.params.id;
     this.userService.getUserById(token, id).subscribe(

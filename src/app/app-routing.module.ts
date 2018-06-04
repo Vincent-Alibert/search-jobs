@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'compte/modifications/:id', component: UserDetailsComponent },
   { path: 'compte/details/:id', component: UserDetailsComponent },
   { path: 'compte', component: CompteComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/homes', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 
